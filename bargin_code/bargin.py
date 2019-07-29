@@ -10,7 +10,7 @@ class bargin(object):
         code=""
         for i in range(4):
             for j in range(4):
-               code+=random.choice(self._code)
+               code+=random.choice(self._code)#random.choice return a random item in list/set/string
             if(i<=2): code+="-"
         return code
 
