@@ -1,3 +1,7 @@
+"""
+Talk is Cheap show me the code. --Linus Torvalds
+generate 200 bargin codes
+"""
 import random
 import string
 class bargin(object):
@@ -14,9 +18,18 @@ class bargin(object):
             if(i<=2): code+="-"
         return code
 
+    def generateList(self,num):
+        list=[]
+        for i in range(num):
+            code=self.gene_code()
+            while code in list:
+                code=self.gene_code()
+            list.append(self.gene_code())
+        return list
+
 
 
 if __name__=="__main__":
     b=bargin()
-    b.gene_code()
+    b.generateList(200)
 
