@@ -2,13 +2,14 @@
 Talk is Cheap show me the code. --Linus Torvalds
 # task 01 generate 200 bargin codes
 # task 02 save code to mysql
+# task 03 save code to redis
 """
 import sys
 import random
 import string
 sys.path.append("..")
 from sql import Sql
-
+from predis import predis
 
 class bargin(object):
     def __init__(self):
@@ -32,13 +33,15 @@ class bargin(object):
             list.append(self.gene_code())
         return list
 
-    def insert_sql(self, codes):
+    def insert_code(self, codes):
         for code in codes:
             Sql.insert('codes', code=code)
+            r=predis()
+            r.rpush(code=code)
         return True
 
 
 if __name__ == "__main__":
     b = bargin()
     codes = b.generateList(200)
-    b.insert_sql(codes)
+    b.insert_code(codes)
